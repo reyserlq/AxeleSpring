@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	
+		<meta charset="ISO-8859-1"></meta>
+		<title>Jugadores</title>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+		</link>
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+		
+		<script type="text/javascript" th:src="@{/js/player.js}"></script>
+				
+	</head>
+
+	<body>
+    	<div th:replace="fragments/header :: header"></div>
+    	<div class="container">
+    		<form th:action="@{/player/registrar}" method="post" th:object="${player}">
+    			<div class="form-group">
+    			
+    			
+    				<label for="idPlayer">ID:</label>
+    				<input type="text" class="form-control" th:field="*{idPlayer}"></input>
+    				
+    				<div class="form-group">
+    					<label for="nombre">NOMBRE:</label>
+    					<input type="text" class="form-control" th:field="*{namePlayer}" id="nombre"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('namePlayer')}" 
+								th:errors="*{namePlayer}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group">
+    					<label for="edad">EDAD:</label>
+    					<input type="text" class="form-control" th:field="*{agePlayer}" id="edad"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('agePlayer')}" 
+								th:errors="*{agePlayer}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group">
+    					<label for="valoracion">VALORACION :</label>
+    					<input type="text" class="form-control" th:field="*{assessmentPlayer}" id="valoracion"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('assessmentPlayer')}" 
+								th:errors="*{assessmentPlayer}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group">
+    					<label for="pais">PAIS :</label>
+    					<input type="text" class="form-control" th:field="*{countryPlayer}" id="pais"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('countryPlayer')}" 
+								th:errors="*{countryPlayer}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group">
+    					<label for="habilidad">HABILIDAD :</label>
+    					<input type="text" class="form-control" th:field="*{abilityPlayer}" id="habilidad"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('abilityPlayer')}" 
+								th:errors="*{abilityPlayer}">
+						</div>
+    				</div>
+    				
+    			</div>
+    			<button type="submit" class="btn btn-primary">Aceptar</button>
+    			<a href="/player/listar" class="btn btn-danger">Cancelar</a>
+    		</form>
+    	</div>
+    	<div th:replace="fragments/footer :: footer"></div>
+	</body>
+
+</html>
