@@ -23,56 +23,74 @@
 	<body>
     	<div th:replace="fragments/header :: header"></div>
     	<div class="container">
-    		<form th:action="@{/pet/registrar}" method="post" th:object="${pet}">
+    		<form th:action="@{/tournament/registrar}" method="post" th:object="${tournament}">
     			<div class="form-group">
-    				<label for="idPet">ID:</label>
-    				<input type="text" class="form-control" th:field="*{idPet}"></input>
+    			
+    				<label for="idTournament">ID:</label>
+    				<input type="text" class="form-control" th:field="*{idTournament}"></input>
     				
     				<div class="form-group">
     					<label for="nombre">NOMBRE:</label>
-    					<input type="text" class="form-control" th:field="*{namePet}" id="nombre"></input>
+    					<input type="text" class="form-control" th:field="*{nameTournament}" id="nombre"></input>
 
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('namePet')}" 
-								th:errors="*{namePet}">
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nameTournament')}" 
+								th:errors="*{nameTournament}">
 						</div>
     					
     				</div>
     				
     				<div class="form-group">
-    					<label for="nombre">FEC-NACIMIENTO:</label>
-    					<input type="date" class="form-control" th:field="*{birthDatePet}" id="fechaNacimiento"></input>
+    					<label for="cantidad_jugadores">CANT JUGADORES :</label>
+    					<input type="text" class="form-control" th:field="*{playersTournament}" id="cantidad_jugadores"></input>
 
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('birthDatePet')}" 
-								th:errors="*{birthDatePet}">
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('playersTournament')}" 
+								th:errors="*{playersTournament}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group">
+    					<label for="valoracion">VALORACION :</label>
+    					<input type="text" class="form-control" th:field="*{assessmentTournament}" id="valoracion"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('assessmentTournament')}" 
+								th:errors="*{assessmentTournament}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group">
+    					<label for="fecha_inicio">FEC INICIO:</label>
+    					<input type="date" class="form-control" th:field="*{startDateTournament}" id="fecha_inicio"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('startDateTournament')}" 
+								th:errors="*{startDateTournament}">
 						</div>
     					
     				</div>
     				
-    				<div class="form-group">
-    					<label for="nombre">RAZA:</label>
-    					<select class="form-control" th:field="*{race.idRace}">
-    					<option th:each="r:${listaRazas}"
-    							th:value="${r.idRace}"	
-    							th:text="${r.nameRace}"
-    							th:selected="(${r.idRace} == *{race.idRace})"> 	    							
+    						<div class="form-group">
+    					<label for="descripcion">DESCRIPCION:</label>
+    					<input type="text" class="form-control" th:field="*{descriptionTournament}" id="descripcion"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('descriptionTournament')}" 
+								th:errors="*{descriptionTournament}">
+						</div>
+    					
+    				</div>
+    				
+    					<div class="form-group">
+    					<label for="nombre">EQUIPO:</label>
+    					<select class="form-control" th:field="*{team.idTeam}">
+    					<option th:each="t:${listaEquipos}"
+    							th:value="${t.idTeam}"	
+    							th:text="${t.nameTeam}"
+    							th:selected="(${t.idTeam} == *{team.idTeam})"> 	    							
     					</option>
     					</select>
     				</div>
-    				
-    				<div class="form-group">
-    					<label for="nombre">PROPETARIO:</label>
-    					<select class="form-control" th:field="*{dueno.idDueno}">
-    					<option th:each="d:${listaDuenos}"
-    							th:value="${d.idDueno}"	
-    							th:text="${d.nameMaster}"
-    							th:selected="(${d.idDueno} == *{dueno.idDueno})"> 	    							
-    					</option>
-    					</select>
-    				</div>
-    				
+    						
     			</div>
     			<button type="submit" class="btn btn-primary">Aceptar</button>
-    			<a href="/pet/listar" class="btn btn-danger">Cancelar</a>
+    			<a href="/tournament/listar" class="btn btn-danger">Cancelar</a>
     		</form>
     	</div>
     	<div th:replace="fragments/footer :: footer"></div>
