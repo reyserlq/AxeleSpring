@@ -11,6 +11,6 @@ import pe.axele.spring.model.Coach;
 
 @Repository
 public interface ICoachRepository extends JpaRepository<Coach, Integer>{
-	@Query("from Coach c where p.nameCoach like %:nameCoach%")
+	@Query("from Coach c where c.nameCoach like %:nameCoach%")
 	List<Coach> buscarNombre(@Param("nameCoach") String nameCoach);
 }

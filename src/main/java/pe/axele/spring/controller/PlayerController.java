@@ -1,5 +1,6 @@
 package pe.axele.spring.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -93,6 +94,37 @@ public class PlayerController {
 	public String listar(Map<String, Object> model ) {
 		model.put("listaJugadores", pService.listar());
 		return "listPlayer";
+	}
+	
+	@RequestMapping("/listarId")
+	public String listarId(Map<String, Object> model, @ModelAttribute Player player ) 
+	throws ParseException
+	{
+		pService.listarId(player.getIdPlayer());
+		return "listPlayer";
+	}
+	
+	@RequestMapping("/irBuscar")
+	public String irBuscar(Model model) 
+	{
+		model.addAttribute("player", new Player());
+		return "buscarJugador";
+	}
+	
+	@RequestMapping("/buscar")
+	public String buscar(Map<String, Object> model, @ModelAttribute Player player ) 
+	throws ParseException
+	{
+		List<Player> listaJugadores;
+		player.setNamePlayer(player.getNamePlayer());
+		listaJugadores=pService.buscarNombre(player.getNamePlayer());
+		
+		if(listaJugadores.isEmpty())
+		{
+			model.put("mensaje", "no existen coincidencias");
+		}
+		model.put("listaJugadores", listaJugadores);
+		return "buscarJugador";
 	}
 	
 }
