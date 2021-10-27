@@ -44,7 +44,7 @@ public class Tournament implements Serializable {
 	private String descriptionTournament;
 
 	@ManyToOne
-	@JoinColumn (name="idDueno", nullable =false)
+	@JoinColumn (name="idTeam", nullable =false)
 	private Team team;
 
 	public Tournament() {
