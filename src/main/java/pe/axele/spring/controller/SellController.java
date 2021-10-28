@@ -30,6 +30,11 @@ public class SellController {
 		return "bienvenido";
 	}
 	
+	@RequestMapping("/market")
+	public String irPaginaMarket() {
+		return "market";
+	}
+	
 	@RequestMapping("/")
 	public String irPaginaListadoVentas(Map<String, Object> model) {
 		model.put("listaVentas", pService.listar());

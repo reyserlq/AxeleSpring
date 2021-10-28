@@ -19,7 +19,7 @@ import pe.axele.spring.model.State;
 import pe.axele.spring.service.IStateService;
 
 @Controller
-@RequestMapping("/position")
+@RequestMapping("/state")
 public class StateController {
 	@Autowired
 	private IStateService pService;
