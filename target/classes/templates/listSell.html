@@ -4,7 +4,7 @@
 	<head>
 	
 		<meta charset="UTF-8"></meta>
-		<title>Torneos</title>
+		<title>Historial de Ventas</title>
 		
 		<script type="text/javascript"
 				src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
@@ -30,12 +30,12 @@
     			<div class="row clearfix">
     				<div class="col-md-12 column">
     					
-    					<a 	style="border-bottom-color: green" th:href="@{/tournament/irRegistrar}"
+    					<a 	style="border-bottom-color: green" th:href="@{/sell/irRegistrar}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-plus"></span> Pet
+    						<span class="glyphicon glyphicon-plus"></span> Vender
     					</a>
     					
-						<a 	style="border-bottom-color: green" th:href="@{/tournament/irBuscar}"
+						<a 	style="border-bottom-color: green" th:href="@{/sell/irBuscar}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
     						<span class="glyphicon glyphicon-search"></span> Buscar
     					</a>
@@ -44,28 +44,21 @@
     						<thead>
     							<tr>
     								<th class="text-center">CODIGO</th>
-    								<th class="text-center">NOMBRE</th>
-    								<th class="text-center">CANT. JUGADORES</th>
-    								<th class="text-center">VALORACION</th>
-    								<th class="text-center">FECHA INICIO</th>
-    								<th class="text-center">DESCRIPCION</th>
-    								<th class="text-center">NOMBRE EQUIPO</th>
+    								<th class="text-center">PRECIO</th>
+    								<th class="text-center">ESTADO</th>
+    								<th class="text-center">JUGADOR</th>
     								<th class="text-center">OPERACION</th>
     								<th class="text-center">OPERACION</th>
-
     							</tr>
     						</thead>
     						<tbody>
-    							<tr th:each="tor: ${listaTorneos}">
-    								<td th:text="${tor.idTournament}"></td>
-    								<td th:text="${tor.nameTournament}"></td>
-    								<td th:text="${tor.playersTournament}"></td>
-    								<td th:text="${tor.assessmentTournament}"></td>
-    								<td th:text="${#dates.format(tor.startDateTournament,'dd/MM/yyyy')}"></td>
-    								<td th:text="${tor.descriptionTournament}"></td>
-    								<td th:text="${tor.team.nameTeam}"></td>
-    								<td><a th:href="@{/tournament/eliminar?id=}+${tor.idTournament}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/tournament/modificar/'}+${tor.idTournament">Modificar</a></td>
+    							<tr th:each="se: ${listaVentas}">
+    								<td th:text="${se.idSell}"></td>
+    								<td th:text="${se.priceSell}"></td>
+    								<td th:text="${se.stateSell}"></td>
+    								<td th:text="${se.player.namePlayer}"></td>
+    								<td><a th:href="@{/sell/eliminar?id=}+${se.idSell}">Cancelar</a></td>    								
+    								<td><a th:href="@{'/sell/modificar/'}+${se.idSell}">Modificar</a></td>
     							</tr>
     						</tbody>
     					</table> 

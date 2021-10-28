@@ -1,6 +1,5 @@
 package pe.axele.spring.controller;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,14 +15,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.axele.spring.model.Coach;
-import pe.axele.spring.service.ICoachService;
+import pe.axele.spring.model.Position;
+import pe.axele.spring.service.IPositionService;
 
 @Controller
-@RequestMapping("/coach")
-public class CoachController {
+@RequestMapping("/position")
+public class PositionController {
 	@Autowired
-	private ICoachService pService;
+	private IPositionService pService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -31,30 +30,30 @@ public class CoachController {
 	}
 	
 	@RequestMapping("/")
-	public String irPaginaListadoEntrenadores(Map<String, Object> model) {
-		model.put("listaEntrenadores", pService.listar());
-		return "listCoach"; 
+	public String irPaginaListadoJugadores(Map<String, Object> model) {
+		model.put("listaPosiciones", pService.listar());
+		return "listPosition"; 
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("coach", new Coach());
-		return "coach"; 
+		model.addAttribute("position", new Position());
+		return "position"; 
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Coach objCoach, BindingResult binRes, Model model) 
+	public String registrar(@ModelAttribute Position objPosition, BindingResult binRes, Model model) 
 		throws ParseException
 	{
 		if (binRes.hasErrors())
-			return "coach";
+			return "position";
 		else {
-			boolean flag = pService.grabar(objCoach);
+			boolean flag = pService.grabar(objPosition);
 			if (flag)
-				return "redirect:/coach/listar";
+				return "redirect:/position/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un rochezaso, LUZ ROJA");
-				return "redirect:/coach/irRegistrar";
+				return "redirect:/position/irRegistrar";
 			}
 		}
 	}
@@ -63,14 +62,14 @@ public class CoachController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
 		throws ParseException
 	{
-		Optional<Coach> objCoach = pService.listarId(id);
-		if (objCoach == null) {
+		Optional<Position> objPosition = pService.listarId(id);
+		if (objPosition == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un roche, LUZ ROJA");
-			return "redirect:/coach/listar";
+			return "redirect:/position/listar";
 		}
 		else {
-			model.addAttribute("coach",objCoach);
-			return "coach";
+			model.addAttribute("position",objPosition);
+			return "position";
 		}
 	}
 		
@@ -79,51 +78,29 @@ public class CoachController {
 		try {
 			if (id!=null && id>0) {
 				pService.eliminar(id);
-				model.put("listaEntrenadores", pService.listar());
+				model.put("listaPosiciones", pService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listaEntrenadores", pService.listar());
+			model.put("listaPosiciones", pService.listar());
 		}
-		return "listCoach";
+		return "listPosition";
 	}
 		
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model ) {
-		model.put("listaEntrenadores", pService.listar());
-		return "listCoach";
+		model.put("listaPosiciones", pService.listar());
+		return "listPosition";
 	}
 	
 	@RequestMapping("/listarId")
-	public String listarId(Map<String, Object> model, @ModelAttribute Coach coach ) 
+	public String listarId(Map<String, Object> model, @ModelAttribute Position position ) 
 	throws ParseException
 	{
-		pService.listarId(coach.getIdCoach());
-		return "listCoach";
+		pService.listarId(position.getIdPosition());
+		return "listPosition";
 	}
-	
-	@RequestMapping("/irBuscar")
-	public String irBuscar(Model model) 
-	{
-		model.addAttribute("coach", new Coach());
-		return "buscarCoach";
-	}
-	
-	@RequestMapping("/buscar")
-	public String buscar(Map<String, Object> model, @ModelAttribute Coach coach ) 
-	throws ParseException
-	{
-		List<Coach> listaEntrenadores;
-		coach.setNameCoach(coach.getNameCoach());
-		listaEntrenadores=pService.buscarNombre(coach.getNameCoach());
 		
-		if(listaEntrenadores.isEmpty())
-		{
-			model.put("mensaje", "no existen coincidencias");
-		}
-		model.put("listaEntrenadores", listaEntrenadores);
-		return "buscarCoach";
-	}
 }

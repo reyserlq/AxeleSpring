@@ -4,7 +4,7 @@
 	<head>
 	
 		<meta charset="ISO-8859-1"></meta>
-		<title>Torneo</title>
+		<title>Torneos</title>
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		
@@ -56,7 +56,7 @@
 								th:errors="*{assessmentTournament}">
 						</div>
     				</div>
-    				
+    			
     				<div class="form-group">
     					<label for="fecha_inicio">FEC INICIO:</label>
     					<input type="date" class="form-control" th:field="*{startDateTournament}" id="fecha_inicio"></input>
@@ -87,7 +87,8 @@
     					</option>
     					</select>
     				</div>
-    						
+    			
+    				
     			</div>
     			<button type="submit" class="btn btn-primary">Aceptar</button>
     			<a href="/tournament/listar" class="btn btn-danger">Cancelar</a>

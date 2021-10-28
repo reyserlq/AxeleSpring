@@ -16,14 +16,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.axele.spring.model.Coach;
-import pe.axele.spring.service.ICoachService;
+import pe.axele.spring.model.Sell;
+import pe.axele.spring.service.ISellService;
 
 @Controller
-@RequestMapping("/coach")
-public class CoachController {
+@RequestMapping("/sell")
+public class SellController {
 	@Autowired
-	private ICoachService pService;
+	private ISellService pService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -31,30 +31,30 @@ public class CoachController {
 	}
 	
 	@RequestMapping("/")
-	public String irPaginaListadoEntrenadores(Map<String, Object> model) {
-		model.put("listaEntrenadores", pService.listar());
-		return "listCoach"; 
+	public String irPaginaListadoVentas(Map<String, Object> model) {
+		model.put("listaVentas", pService.listar());
+		return "listSell"; 
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("coach", new Coach());
-		return "coach"; 
+		model.addAttribute("sell", new Sell());
+		return "sell"; 
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Coach objCoach, BindingResult binRes, Model model) 
+	public String registrar(@ModelAttribute Sell objSell, BindingResult binRes, Model model) 
 		throws ParseException
 	{
 		if (binRes.hasErrors())
-			return "coach";
+			return "sell";
 		else {
-			boolean flag = pService.grabar(objCoach);
+			boolean flag = pService.grabar(objSell);
 			if (flag)
-				return "redirect:/coach/listar";
+				return "redirect:/sell/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un rochezaso, LUZ ROJA");
-				return "redirect:/coach/irRegistrar";
+				return "redirect:/sell/irRegistrar";
 			}
 		}
 	}
@@ -63,14 +63,14 @@ public class CoachController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
 		throws ParseException
 	{
-		Optional<Coach> objCoach = pService.listarId(id);
-		if (objCoach == null) {
+		Optional<Sell> objSell = pService.listarId(id);
+		if (objSell == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un roche, LUZ ROJA");
-			return "redirect:/coach/listar";
+			return "redirect:/sell/listar";
 		}
 		else {
-			model.addAttribute("coach",objCoach);
-			return "coach";
+			model.addAttribute("sell",objSell);
+			return "sell";
 		}
 	}
 		
@@ -79,51 +79,52 @@ public class CoachController {
 		try {
 			if (id!=null && id>0) {
 				pService.eliminar(id);
-				model.put("listaEntrenadores", pService.listar());
+				model.put("listaVentas", pService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listaEntrenadores", pService.listar());
+			model.put("listaVentas", pService.listar());
 		}
-		return "listCoach";
+		return "listSell";
 	}
 		
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model ) {
-		model.put("listaEntrenadores", pService.listar());
-		return "listCoach";
+		model.put("listaVentas", pService.listar());
+		return "listSell";
 	}
 	
 	@RequestMapping("/listarId")
-	public String listarId(Map<String, Object> model, @ModelAttribute Coach coach ) 
+	public String listarId(Map<String, Object> model, @ModelAttribute Sell sell ) 
 	throws ParseException
 	{
-		pService.listarId(coach.getIdCoach());
-		return "listCoach";
+		pService.listarId(sell.getIdSell());
+		return "listSell";
 	}
 	
 	@RequestMapping("/irBuscar")
 	public String irBuscar(Model model) 
 	{
-		model.addAttribute("coach", new Coach());
-		return "buscarCoach";
+		model.addAttribute("sell", new Sell());
+		return "buscarSell";
 	}
 	
 	@RequestMapping("/buscar")
-	public String buscar(Map<String, Object> model, @ModelAttribute Coach coach ) 
+	public String buscar(Map<String, Object> model, @ModelAttribute Sell sell ) 
 	throws ParseException
 	{
-		List<Coach> listaEntrenadores;
-		coach.setNameCoach(coach.getNameCoach());
-		listaEntrenadores=pService.buscarNombre(coach.getNameCoach());
+		List<Sell> listaVentas;
+		sell.setStateSell(sell.getStateSell());
+		listaVentas=pService.buscarEstado(sell.getStateSell());
 		
-		if(listaEntrenadores.isEmpty())
+		if(listaVentas.isEmpty())
 		{
 			model.put("mensaje", "no existen coincidencias");
 		}
-		model.put("listaEntrenadores", listaEntrenadores);
-		return "buscarCoach";
+		model.put("listaVentas", listaVentas);
+		return "buscarSell";
 	}
+	
 }

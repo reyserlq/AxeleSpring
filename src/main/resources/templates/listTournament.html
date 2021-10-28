@@ -32,7 +32,7 @@
     					
     					<a 	style="border-bottom-color: green" th:href="@{/tournament/irRegistrar}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-plus"></span> Torneo
+    						<span class="glyphicon glyphicon-plus"></span> Pet
     					</a>
     					
 						<a 	style="border-bottom-color: green" th:href="@{/tournament/irBuscar}"
@@ -48,6 +48,7 @@
     								<th class="text-center">CANT. JUGADORES</th>
     								<th class="text-center">VALORACION</th>
     								<th class="text-center">FECHA INICIO</th>
+    								<th class="text-center">DESCRIPCION</th>
     								<th class="text-center">NOMBRE EQUIPO</th>
     								<th class="text-center">OPERACION</th>
     								<th class="text-center">OPERACION</th>
@@ -58,6 +59,7 @@
     							<tr th:each="tor: ${listaTorneos}">
     								<td th:text="${tor.idTournament}"></td>
     								<td th:text="${tor.nameTournament}"></td>
+    								<td th:text="${tor.playersTournament}"></td>
     								<td th:text="${tor.assessmentTournament}"></td>
     								<td th:text="${#dates.format(tor.startDateTournament,'dd/MM/yyyy')}"></td>
     								<td th:text="${tor.descriptionTournament}"></td>
