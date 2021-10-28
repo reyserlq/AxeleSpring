@@ -53,7 +53,7 @@
     					<option th:each="p:${listaJugadores}"
     							th:value="${p.idPlayer}"	
     							th:text="${p.namePlayer}"
-    							th:selected="(${p.idCoach} == *{player.idPlayer})"> 	    							
+    							th:selected="(${p.idPlayer} == *{player.idPlayer})"> 	    							
     					</option>
     					</select>
     				</div>

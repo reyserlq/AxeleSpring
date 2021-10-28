@@ -17,6 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.el.parser.ParseException;
 
 import pe.axele.spring.model.Sell;
+import pe.axele.spring.model.Player;
+import pe.axele.spring.service.IPlayerService;
 import pe.axele.spring.service.ISellService;
 
 @Controller
@@ -24,6 +26,9 @@ import pe.axele.spring.service.ISellService;
 public class SellController {
 	@Autowired
 	private ISellService pService;
+	
+	@Autowired
+	private IPlayerService plService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -43,7 +48,9 @@ public class SellController {
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
+		model.addAttribute("listaJugadores", plService.listar());
 		model.addAttribute("sell", new Sell());
+		model.addAttribute("player", new Player());
 		return "sell"; 
 	}
 	
@@ -52,7 +59,10 @@ public class SellController {
 		throws ParseException
 	{
 		if (binRes.hasErrors())
+		{
+			model.addAttribute("listaJugadores", plService.listar());
 			return "sell";
+		}
 		else {
 			boolean flag = pService.grabar(objSell);
 			if (flag)
@@ -74,7 +84,10 @@ public class SellController {
 			return "redirect:/sell/listar";
 		}
 		else {
-			model.addAttribute("sell",objSell);
+			model.addAttribute("listaJugadores", plService.listar());
+			
+			if(objSell.isPresent())
+				objSell.ifPresent(o ->model.addAttribute("sell", o));
 			return "sell";
 		}
 	}
