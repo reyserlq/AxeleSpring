@@ -49,6 +49,8 @@
     								<th class="text-center">VALORACION</th>
     								<th class="text-center">FECHA INICIO</th>
     								<th class="text-center">NOMBRE EQUIPO</th>
+    								<th class="text-center">OPERACION</th>
+    								<th class="text-center">OPERACION</th>
 
     							</tr>
     						</thead>
@@ -58,8 +60,10 @@
     								<td th:text="${tor.nameTournament}"></td>
     								<td th:text="${tor.assessmentTournament}"></td>
     								<td th:text="${#dates.format(tor.startDateTournament,'dd/MM/yyyy')}"></td>
-    								<td th:text="${p.descriptionTournament}"></td>
+    								<td th:text="${tor.descriptionTournament}"></td>
     								<td th:text="${tor.team.nameTeam}"></td>
+    								<td><a th:href="@{/tournament/eliminar?id=}+${tor.idTournament}">Eliminar</a></td>    								
+    								<td><a th:href="@{'/tournament/modificar/'}+${tor.idTournament">Modificar</a></td>
     							</tr>
     						</tbody>
     					</table> 

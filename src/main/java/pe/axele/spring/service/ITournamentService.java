@@ -3,7 +3,6 @@ package pe.axele.spring.service;
 import java.util.List;
 import java.util.Optional;
 
-import pe.axele.spring.model.Player;
 import pe.axele.spring.model.Tournament;
 
 public interface ITournamentService {

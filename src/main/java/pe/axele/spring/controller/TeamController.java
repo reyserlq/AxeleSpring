@@ -37,7 +37,7 @@ public class TeamController {
 	}
 	
 	@RequestMapping("/")
-	public String irPaginaListadoJugadores(Map<String, Object> model) {
+	public String irPaginaListadoEquipos(Map<String, Object> model) {
 		model.put("listaEquipos", pService.listar());
 		return "listTeam"; 
 	}
@@ -47,8 +47,9 @@ public class TeamController {
 		
 		model.addAttribute("listaEntrenadores", cService.listar());
 		
-		model.addAttribute("team", new Team());
 		model.addAttribute("coach", new Coach());
+		model.addAttribute("team", new Team());
+		
 		return "team"; 
 	}
 	

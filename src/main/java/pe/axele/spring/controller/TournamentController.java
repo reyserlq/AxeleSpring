@@ -86,7 +86,7 @@ public class TournamentController {
 			
 			if(objTournament.isPresent())
 				objTournament.ifPresent(o ->model.addAttribute("tournament", o));
-			return "team";
+			return "tournament";
 		}
 	}
 		

@@ -11,6 +11,6 @@ import pe.axele.spring.model.Team;
 
 @Repository
 public interface ITeamRepository extends JpaRepository<Team, Integer>{
-	@Query("from Team p where p.nameTeam like %:nameTeam%")
+	@Query("from Team t where t.nameTeam like %:nameTeam%")
 	List<Team> buscarNombre(@Param("nameTeam") String nameTeam);
 }

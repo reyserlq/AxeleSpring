@@ -47,6 +47,8 @@
     								<th class="text-center">NOMBRE</th>
     								<th class="text-center">ALINEACION</th>
     								<th class="text-center">ENTRENADOR</th>
+    								<th class="text-center">OPERACION</th>
+    								<th class="text-center">OPERACION</th>
     							</tr>
     						</thead>
     						<tbody>
@@ -55,6 +57,8 @@
     								<td th:text="${tea.nameTeam}"></td>
     								<td th:text="${tea.alignmentTeam}"></td>
     								<td th:text="${tea.coach.nameCoach}"></td>
+    								<td><a th:href="@{/team/eliminar?id=}+${tea.idTeam}">Eliminar</a></td>    								
+    								<td><a th:href="@{'/team/modificar/'}+${tea.idTeam}">Modificar</a></td>
     							</tr>
     						</tbody>
     					</table> 

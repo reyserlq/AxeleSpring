@@ -32,7 +32,7 @@ public class CoachController {
 	}
 	
 	@RequestMapping("/")
-	public String irPaginaListadoJugadores(Map<String, Object> model) {
+	public String irPaginaListadoEntrenadores(Map<String, Object> model) {
 		model.put("listaEntrenadores", pService.listar());
 		return "listCoach"; 
 	}
