@@ -26,58 +26,64 @@
     		<form th:action="@{/player/registrar}" method="post" th:object="${player}">
     			<div class="form-group">
     			
-    			
-    				<label for="idPlayer">ID:</label>
-    				<input type="text" class="form-control" th:field="*{idPlayer}"></input>
-    				
-    				<div class="form-group">
+    				<div class="form-group col-md-9">
     					<label for="nombre">NOMBRE:</label>
-    					<input type="text" class="form-control" th:field="*{namePlayer}" id="nombre"></input>
+    					<input type="text" class="form-control" th:field="*{namePlayer}" id="nombre" placeholder="Ingrese el nombre del jugador"></input>
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('namePlayer')}" 
 								th:errors="*{namePlayer}">
 						</div>
     				</div>
     				
-    				<div class="form-group">
-    					<label for="edad">EDAD:</label>
-    					<input type="text" class="form-control" th:field="*{agePlayer}" id="edad"></input>
-
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('agePlayer')}" 
-								th:errors="*{agePlayer}">
-						</div>
-    				</div>
-    				
-    				<div class="form-group">
-    					<label for="valoracion">VALORACION :</label>
-    					<input type="text" class="form-control" th:field="*{assessmentPlayer}" id="valoracion"></input>
-
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('assessmentPlayer')}" 
-								th:errors="*{assessmentPlayer}">
-						</div>
-    				</div>
-    				
-    				<div class="form-group">
-    					<label for="pais">PAIS :</label>
-    					<input type="text" class="form-control" th:field="*{countryPlayer}" id="pais"></input>
-
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('countryPlayer')}" 
-								th:errors="*{countryPlayer}">
-						</div>
+    				<div class="form-group col-md-3">
+    				<label for="idPlayer">ID:</label>
+    				<input type="text" class="form-control" th:field="*{idPlayer}"></input>
     				</div>
     				
     				<div class="form-group">
     					<label for="habilidad">HABILIDAD :</label>
-    					<input type="text" class="form-control" th:field="*{abilityPlayer}" id="habilidad"></input>
+    					<input type="text" class="form-control" th:field="*{abilityPlayer}" id="habilidad" placeholder="Ingrese el tipo de habilidad del jugador"></input>
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('abilityPlayer')}" 
 								th:errors="*{abilityPlayer}">
 						</div>
     				</div>
     				
+    				
+    				<div class="form-group col-md-4">
+    					<label for="edad">EDAD:</label>
+    					<input type="text" class="form-control" th:field="*{agePlayer}" id="edad" placeholder="Ingrese la edad del jugador"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('agePlayer')}" 
+								th:errors="*{agePlayer}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group col-md-4">
+    					<label for="valoracion">VALORACION :</label>
+    					<input type="text" class="form-control" th:field="*{assessmentPlayer}" id="valoracion" placeholder="Ingrese la valoracion del jugador"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('assessmentPlayer')}" 
+								th:errors="*{assessmentPlayer}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group col-md-4">
+    					<label for="pais">PAIS :</label>
+    					<input type="text" class="form-control" th:field="*{countryPlayer}" id="pais" placeholder="Ingrese el pais del jugador"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('countryPlayer')}" 
+								th:errors="*{countryPlayer}">
+						</div>
+    				</div>
+    				
+    				
+    				
     			</div>
+    			<div class="text-center">
     			<button type="submit" class="btn btn-primary">Aceptar</button>
     			<a href="/player/listar" class="btn btn-danger">Cancelar</a>
+    			</div>
     		</form>
     	</div>
     	<div th:replace="fragments/footer :: footer"></div>

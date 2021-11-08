@@ -13,27 +13,22 @@
 			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>
 	</head>
-	
-
 	<body>
 		<div th:fragment="header">
-		
 			<!-- this is header -->
 			<nav class="navbar navbar-default" >
 				<div class="container-fluid" style="background-color: rgb(189, 209, 197);">
 					<div class="navbar-header"  >
 						<a class="navbar-brand" th:href="@{/player/bienvenido}">Axele</a>
 					</div>
-	
 						<ul class="nav navbar-nav" >
-						
 							<li class="p-4active" ><a th:href="@{/player/listar}">Jugador</a></li>
 							<li class="p-4active"><a th:href="@{/coach/listar}">Entrenador</a></li>
 							<li class="p-4active"><a th:href="@{/team/listar}">Equipo</a></li>
 							<li class="p-4active"><a th:href="@{/sell/listar}">Mercado</a></li>
 							<li class="p-4active"><a th:href="@{/tournament/listar}">Torneo</a></li>
+							
 						</ul>
-						
 						<ul class="nav navbar-nav navbar-right">
     						  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Ingresar</a></li>
     						  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
@@ -42,7 +37,5 @@
 				</div>
 			</nav>
 		</div>
-	
 	</body>
-	
 </html>
