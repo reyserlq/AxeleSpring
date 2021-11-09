@@ -26,12 +26,9 @@
     		<form th:action="@{/tournament/registrar}" method="post" th:object="${tournament}">
     			<div class="form-group">
     			
-    				<label for="idTournament">ID:</label>
-    				<input type="text" class="form-control" th:field="*{idTournament}"></input>
-    				
-    				<div class="form-group">
+    				<div class="form-group col-md-9">
     					<label for="nombre">NOMBRE:</label>
-    					<input type="text" class="form-control" th:field="*{nameTournament}" id="nombre"></input>
+    					<input type="text" class="form-control" th:field="*{nameTournament}" id="nombre" placeholder="Ingrese el nombre del torneo"></input>
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nameTournament')}" 
 								th:errors="*{nameTournament}">
@@ -39,27 +36,34 @@
     					
     				</div>
     				
-    				<div class="form-group">
+    				<div class="form-group col-md-3">
+    				<label for="idTournament">ID:</label>
+    				<input type="text" class="form-control" th:field="*{idTournament}"></input>
+    				</div>
+    				
+    				
+    				
+    				<div class="form-group col-md-4">
     					<label for="cantidad_jugadores">CANT JUGADORES :</label>
-    					<input type="text" class="form-control" th:field="*{playersTournament}" id="cantidad_jugadores"></input>
+    					<input type="text" class="form-control" th:field="*{playersTournament}" id="cantidad_jugadores" placeholder="Ingrese la cantidad de jugadores que va a admitir el torneo"></input>
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('playersTournament')}" 
 								th:errors="*{playersTournament}">
 						</div>
     				</div>
     				
-    				<div class="form-group">
+    				<div class="form-group col-md-4">
     					<label for="valoracion">VALORACION :</label>
-    					<input type="text" class="form-control" th:field="*{assessmentTournament}" id="valoracion"></input>
+    					<input type="text" class="form-control" th:field="*{assessmentTournament}" id="valoracion" placeholder="Ingrese la valoracion del torneo"></input>
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('assessmentTournament')}" 
 								th:errors="*{assessmentTournament}">
 						</div>
     				</div>
     			
-    				<div class="form-group">
+    				<div class="form-group col-md-4">
     					<label for="fecha_inicio">FEC INICIO:</label>
-    					<input type="date" class="form-control" th:field="*{startDateTournament}" id="fecha_inicio"></input>
+    					<input type="date" class="form-control" th:field="*{startDateTournament}" id="fecha_inicio" placeholder="Ingrese la fecha de inicio del torneo"></input>
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('startDateTournament')}" 
 								th:errors="*{startDateTournament}">
@@ -67,9 +71,9 @@
     					
     				</div>
     				
-    				<div class="form-group">
+    				<div class="form-group col-md-5">
     					<label for="descripcion">DESCRIPCION:</label>
-    					<input type="text" class="form-control" th:field="*{descriptionTournament}" id="descripcion"></input>
+    					<input type="text" class="form-control" th:field="*{descriptionTournament}" id="descripcion" placeholder="Ingrese una descripcion para el torneo"></input>
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('descriptionTournament')}" 
 								th:errors="*{descriptionTournament}">
@@ -90,8 +94,11 @@
     			
     				
     			</div>
+    			
+    			<div class="text-center">
     			<button type="submit" class="btn btn-primary">Aceptar</button>
     			<a href="/tournament/listar" class="btn btn-danger">Cancelar</a>
+    			</div>
     		</form>
     	</div>
     	<div th:replace="fragments/footer :: footer"></div>

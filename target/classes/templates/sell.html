@@ -26,21 +26,22 @@
     		<form th:action="@{/sell/registrar}" method="post" th:object="${sell}">
     			<div class="form-group">
     			
-    			
+    				<div class="form-group col-md-4">
     				<label for="idSell">ID:</label>
     				<input type="text" class="form-control" th:field="*{idSell}"></input>
+    				</div>
     				
-    				<div class="form-group">
+    				<div class="form-group col-md-4">
     					<label for="precio">PRECIO:</label>
-    					<input type="text" class="form-control" th:field="*{priceSell}" id="precio"></input>
+    					<input type="text" class="form-control" th:field="*{priceSell}" id="precio" placeholder="Ingrese el precio del jugador"></input>
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('priceSell')}" 
 								th:errors="*{priceSell}">
 						</div>
     				</div>
     				
-    				<div class="form-group">
+    				<div class="form-group col-md-5">
     					<label for="estado">ESTADO:</label>
-    					<input type="text" class="form-control" th:field="*{stateSell}" id="estado"></input>
+    					<input type="text" class="form-control" th:field="*{stateSell}" id="estado" placeholder="Ingrese el estado en que se encuentra el jugador"></input>
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('stateSell')}" 
 								th:errors="*{stateSell}">
@@ -59,8 +60,11 @@
     				</div>
     				
     			</div>
+    			
+    			<div class="text-center">
     			<button type="submit" class="btn btn-primary">Aceptar</button>
     			<a href="/sell/listar" class="btn btn-danger">Cancelar</a>
+    			</div>
     		</form>
     	</div>
     	<div th:replace="fragments/footer :: footer"></div>
