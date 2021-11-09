@@ -27,28 +27,41 @@
 	<body>
     	<div th:replace="fragments/header :: header"></div>
     	<div class="container">
-    		<form id="myform">
-    			<div class="row clearfix">
-    				<div class="col-md-12 column" align="left">
-    					<img th:src="@{/imagenes/compra.png}" width="200" height="200" alt="logo" align="left">
-    					</img>
+    		<form th:action="@{/market/registrar}" method="post" th:object="${market}">
+    		
+    		<div class="container">
+    				<div class="row">
+    					<img th:src="@{/imagenes/compra.png}"  width="200" height="200" align="left"></img>
     				</div>
-    				<a 	style="border-bottom-color: green" th:href="@{/tournament/irRegistrar}"
-    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-briefcase"></span> Comprar
-    				</a>
-    				<div class="col-md-12 column" align="left">
-    					<img th:src="@{/imagenes/venta.png}" width="200" height="200" alt="logo" align="right">
-    					</img>
+    		</div>
+    		
+    		<div class="container">
+    				<div class="row">
+    					<img th:src="@{/imagenes/venta.png}"  width="200" height="200" align="right"></img>
     				</div>
-    				<a 	style="border-bottom-color: green" th:href="@{/tournament/irRegistrar}"
-    						id="add-row" type="button" class="btn btn-primary btn-md right-block">
-    						<span class="glyphicon glyphicon-usd"></span> Vender
-    				</a>
+    		</div>
+    		
+    		<div class="panel-footer row">
+    			<div class="col-xs-6 text-left">
+    			<a 	style="border-bottom-color: blue" th:href="@{/tournament/irRegistrar}"
+    					id="add-row" type="button" class="btn btn-primary btn-md">
+    					<span class="glyphicon glyphicon-briefcase"></span> Comprar Jugador
+    			</a>
     			</div>
+    			
+    			<div class="col-xs-6 text-right">
+    			<a 	style="border-bottom-color: blue" th:href="@{/tournament/irRegistrar}"
+    					id="add-row" type="button" class="btn btn-primary btn-md">
+    					<span class="glyphicon glyphicon-usd"></span> Vender Jugador
+    			</a>
+    			</div>
+    			
+    		</div>	
+    		
     		</form>
     	</div>
     	<div th:replace="fragments/footer :: footer"></div>
 	</body>
 	
 </html>
+
