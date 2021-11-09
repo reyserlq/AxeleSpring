@@ -16,14 +16,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
+import pe.axele.spring.model.Position;
 import pe.axele.spring.model.Player;
 import pe.axele.spring.service.IPlayerService;
+import pe.axele.spring.service.IPositionService;
 
 @Controller
 @RequestMapping("/player")
 public class PlayerController {
 	@Autowired
 	private IPlayerService pService;
+	
+	@Autowired
+	private IPositionService poService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -38,6 +43,10 @@ public class PlayerController {
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
+		
+		model.addAttribute("listaPosiciones", poService.listar());
+		
+		model.addAttribute("position", new Position());
 		model.addAttribute("player", new Player());
 		return "player"; 
 	}
@@ -47,7 +56,11 @@ public class PlayerController {
 		throws ParseException
 	{
 		if (binRes.hasErrors())
+		{
+			model.addAttribute("listaPosiciones", poService.listar());
 			return "player";
+			
+		}
 		else {
 			boolean flag = pService.grabar(objPlayer);
 			if (flag)
@@ -69,7 +82,10 @@ public class PlayerController {
 			return "redirect:/player/listar";
 		}
 		else {
-			model.addAttribute("player",objPlayer);
+			model.addAttribute("listaPosiciones", poService.listar());
+			
+			if(objPlayer.isPresent())
+				objPlayer.ifPresent(o ->model.addAttribute("player", o));
 			return "player";
 		}
 	}

@@ -67,6 +67,17 @@
     				</div>
     				
     				<div class="form-group">
+    					<label for="posicion">POSICION:</label>
+    					<select class="form-control" th:field="*{position.idPosition}">
+    					<option th:each="p:${listaPosiciones}"
+    							th:value="${p.idPosition}"	
+    							th:text="${p.namePosition}"
+    							th:selected="(${p.idPosition} == *{position.idPosition})"> 	    							
+    					</option>
+    					</select>
+    				</div>
+    				
+    				<div class="form-group">
     					<label for="habilidad">HABILIDAD :</label>
     					<input type="text" class="form-control" th:field="*{abilityPlayer}" id="habilidad"></input>
 

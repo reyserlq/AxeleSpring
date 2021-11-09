@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -35,15 +37,17 @@ public class Player implements Serializable {
 	@Column(name="habilidadJugador", nullable=false)	
 	private Integer abilityPlayer;
 	
-	
+	@ManyToOne
+	@JoinColumn (name="idPosition", nullable =false)
+	private Position position;
+
 	public Player() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Player(int idPlayer, String namePlayer, Integer agePlayer, Integer assessmentPlayer, String countryPlayer,
-			Integer abilityPlayer) {
+			Integer abilityPlayer, Position position) {
 		super();
 		this.idPlayer = idPlayer;
 		this.namePlayer = namePlayer;
@@ -51,68 +55,64 @@ public class Player implements Serializable {
 		this.assessmentPlayer = assessmentPlayer;
 		this.countryPlayer = countryPlayer;
 		this.abilityPlayer = abilityPlayer;
+		this.position = position;
 	}
-
 
 	public int getIdPlayer() {
 		return idPlayer;
 	}
 
-
 	public void setIdPlayer(int idPlayer) {
 		this.idPlayer = idPlayer;
 	}
-
 
 	public String getNamePlayer() {
 		return namePlayer;
 	}
 
-
 	public void setNamePlayer(String namePlayer) {
 		this.namePlayer = namePlayer;
 	}
-
 
 	public Integer getAgePlayer() {
 		return agePlayer;
 	}
 
-
 	public void setAgePlayer(Integer agePlayer) {
 		this.agePlayer = agePlayer;
 	}
-
 
 	public Integer getAssessmentPlayer() {
 		return assessmentPlayer;
 	}
 
-
 	public void setAssessmentPlayer(Integer assessmentPlayer) {
 		this.assessmentPlayer = assessmentPlayer;
 	}
-
 
 	public String getCountryPlayer() {
 		return countryPlayer;
 	}
 
-
 	public void setCountryPlayer(String countryPlayer) {
 		this.countryPlayer = countryPlayer;
 	}
-
 
 	public Integer getAbilityPlayer() {
 		return abilityPlayer;
 	}
 
-
 	public void setAbilityPlayer(Integer abilityPlayer) {
 		this.abilityPlayer = abilityPlayer;
 	}
-	
-	
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
 	
 }
