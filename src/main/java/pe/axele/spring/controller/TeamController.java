@@ -16,14 +16,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.axele.spring.model.Player;
-import pe.axele.spring.service.IPlayerService;
+import pe.axele.spring.model.Team;
+import pe.axele.spring.service.ITeamService;
+import pe.axele.spring.model.Coach;
+import pe.axele.spring.service.ICoachService;
 
 @Controller
-@RequestMapping("/player")
-public class PlayerController {
+@RequestMapping("/team")
+public class TeamController {
+	
 	@Autowired
-	private IPlayerService pService;
+	private ITeamService pService;
+	
+	@Autowired
+	private ICoachService cService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -31,30 +37,38 @@ public class PlayerController {
 	}
 	
 	@RequestMapping("/")
-	public String irPaginaListadoJugadores(Map<String, Object> model) {
-		model.put("listaJugadores", pService.listar());
-		return "listPlayer"; 
+	public String irPaginaListadoEquipos(Map<String, Object> model) {
+		model.put("listaEquipos", pService.listar());
+		return "listTeam"; 
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("player", new Player());
-		return "player"; 
+		
+		model.addAttribute("listaEntrenadores", cService.listar());
+		
+		model.addAttribute("coach", new Coach());
+		model.addAttribute("team", new Team());
+		
+		return "team"; 
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Player objPlayer, BindingResult binRes, Model model) 
+	public String registrar(@ModelAttribute Team objTeam, BindingResult binRes, Model model) 
 		throws ParseException
 	{
 		if (binRes.hasErrors())
-			return "player";
+		{
+			model.addAttribute("listaEntrenadores", cService.listar());
+			return "team";
+		}
 		else {
-			boolean flag = pService.grabar(objPlayer);
+			boolean flag = pService.grabar(objTeam);
 			if (flag)
-				return "redirect:/player/listar";
+				return "redirect:/team/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un rochezaso, LUZ ROJA");
-				return "redirect:/player/irRegistrar";
+				return "redirect:/team/irRegistrar";
 			}
 		}
 	}
@@ -63,14 +77,18 @@ public class PlayerController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
 		throws ParseException
 	{
-		Optional<Player> objPlayer = pService.listarId(id);
-		if (objPlayer == null) {
+		Optional<Team> objTeam = pService.listarId(id);
+		if (objTeam == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un roche, LUZ ROJA");
-			return "redirect:/player/listar";
+			return "redirect:/team/listar";
 		}
 		else {
-			model.addAttribute("player",objPlayer);
-			return "player";
+			
+			model.addAttribute("listaEntrenadores", cService.listar());
+				
+			if(objTeam.isPresent())
+				objTeam.ifPresent(o ->model.addAttribute("team", o));
+			return "team";
 		}
 	}
 		
@@ -79,52 +97,52 @@ public class PlayerController {
 		try {
 			if (id!=null && id>0) {
 				pService.eliminar(id);
-				model.put("listaJugadores", pService.listar());
+				model.put("listaEquipos", pService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listaJugadores", pService.listar());
+			model.put("listaEquipos", pService.listar());
 		}
-		return "listPlayer";
+		return "listTeam";
 	}
 		
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model ) {
-		model.put("listaJugadores", pService.listar());
-		return "listPlayer";
+		model.put("listaEquipos", pService.listar());
+		return "listTeam";
 	}
 	
 	@RequestMapping("/listarId")
-	public String listarId(Map<String, Object> model, @ModelAttribute Player player ) 
+	public String listarId(Map<String, Object> model, @ModelAttribute Team team ) 
 	throws ParseException
 	{
-		pService.listarId(player.getIdPlayer());
-		return "listPlayer";
+		pService.listarId(team.getIdTeam());
+		return "listTeam";
 	}
 	
 	@RequestMapping("/irBuscar")
 	public String irBuscar(Model model) 
 	{
-		model.addAttribute("player", new Player());
-		return "buscarJugador";
+		model.addAttribute("team", new Team());
+		return "buscarTeam";
 	}
 	
 	@RequestMapping("/buscar")
-	public String buscar(Map<String, Object> model, @ModelAttribute Player player ) 
+	public String buscar(Map<String, Object> model, @ModelAttribute Team team ) 
 	throws ParseException
 	{
-		List<Player> listaJugadores;
-		player.setNamePlayer(player.getNamePlayer());
-		listaJugadores=pService.buscarNombre(player.getNamePlayer());
+		List<Team> listaEquipos;
+		team.setNameTeam(team.getNameTeam());
+		listaEquipos=pService.buscarNombre(team.getNameTeam());
 		
-		if(listaJugadores.isEmpty())
+		if(listaEquipos.isEmpty())
 		{
 			model.put("mensaje", "no existen coincidencias");
 		}
-		model.put("listaJugadores", listaJugadores);
-		return "buscarJugador";
+		model.put("listaEquipos", listaEquipos);
+		return "buscarTeam";
 	}
 	
 }

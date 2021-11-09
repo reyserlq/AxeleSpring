@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	
+		<meta charset="ISO-8859-1"></meta>
+		<title>Venta</title>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+		</link>
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+		
+		<script type="text/javascript" th:src="@{/js/race.js}"></script>
+				
+	</head>
+
+	<body>
+    	<div th:replace="fragments/header :: header"></div>
+    	<div class="container">
+    		<form th:action="@{/sell/registrar}" method="post" th:object="${sell}">
+    			<div class="form-group">
+    			
+    			
+    				<label for="idSell">ID:</label>
+    				<input type="text" class="form-control" th:field="*{idSell}"></input>
+    				
+    				<div class="form-group">
+    					<label for="precio">PRECIO:</label>
+    					<input type="text" class="form-control" th:field="*{priceSell}" id="precio"></input>
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('priceSell')}" 
+								th:errors="*{priceSell}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group">
+    					<label for="estado">ESTADO:</label>
+    					<input type="text" class="form-control" th:field="*{stateSell}" id="estado"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('stateSell')}" 
+								th:errors="*{stateSell}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group">
+    					<label for="jugador">JUGADOR:</label>
+    					<select class="form-control" th:field="*{player.idPlayer}">
+    					<option th:each="p:${listaJugadores}"
+    							th:value="${p.idPlayer}"	
+    							th:text="${p.namePlayer}"
+    							th:selected="(${p.idPlayer} == *{player.idPlayer})"> 	    							
+    					</option>
+    					</select>
+    				</div>
+    				
+    			</div>
+    			<button type="submit" class="btn btn-primary">Aceptar</button>
+    			<a href="/sell/listar" class="btn btn-danger">Cancelar</a>
+    		</form>
+    	</div>
+    	<div th:replace="fragments/footer :: footer"></div>
+	</body>
+
+</html>

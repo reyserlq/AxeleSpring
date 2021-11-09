@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import pe.axele.spring.model.Coach;
+import pe.axele.spring.model.Team;
 
 @Repository
-public interface ICoachRepository extends JpaRepository<Coach, Integer>{
-	@Query("from Coach c where c.nameCoach like %:nameCoach%")
-	List<Coach> buscarNombre(@Param("nameCoach") String nameCoach);
+public interface ITeamRepository extends JpaRepository<Team, Integer>{
+	@Query("from Team t where t.nameTeam like %:nameTeam%")
+	List<Team> buscarNombre(@Param("nameTeam") String nameTeam);
 }

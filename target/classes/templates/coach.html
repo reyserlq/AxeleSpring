@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	
+		<meta charset="ISO-8859-1"></meta>
+		<title>Entrenadores</title>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+		</link>
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+		
+		<script type="text/javascript" th:src="@{/js/race.js}"></script>
+				
+	</head>
+
+	<body>
+    	<div th:replace="fragments/header :: header"></div>
+    	<div class="container">
+    		<form th:action="@{/coach/registrar}" method="post" th:object="${coach}">
+    			<div class="form-row">
+    			
+    				<div class="form-group col-md-9">
+    					<label for="nombre">NOMBRE:</label>
+    					<input type="text" class="form-control" th:field="*{nameCoach}" id="nombre" placeholder="Ingrese el nombre del entrenador"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('nameCoach')}" 
+								th:errors="*{nameCoach}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group col-md-3">
+    				<label for="idCoach">ID:</label>
+    				<input type="text" class="form-control" th:field="*{idCoach}" placeholder="Ingrese una ID" ></input>
+    				</div>
+    				
+    				
+    				
+    				<div class="form-group col-md-6">
+    					<label for="edad">EDAD:</label>
+    					<input type="text" class="form-control" th:field="*{ageCoach}" id="edad" placeholder="Ingrese una edad para el entrenador"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('ageCoach')}" 
+								th:errors="*{ageCoach}">
+						</div>
+    				</div>
+    				
+    				<div class="form-group col-md-6">
+    					<label for="pais">PAIS :</label>
+    					<input type="text" class="form-control" th:field="*{countryCoach}" id="pais" placeholder="Ingrese el pais del entrenador"></input>
+
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('countryCoach')}" 
+								th:errors="*{countryCoach}">
+						</div>
+    				</div>
+    				
+    			</div>
+    			<div class="text-center">
+    			<button type="submit" class="btn btn-primary">Aceptar</button>
+    			<a href="/coach/listar" class="btn btn-danger">Cancelar</a>
+    			</div>
+    		</form>
+    	</div>
+    	<div th:replace="fragments/footer :: footer"></div>
+	</body>
+
+</html>

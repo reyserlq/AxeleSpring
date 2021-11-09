@@ -1,5 +1,6 @@
 package pe.axele.spring.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class CoachController {
 	}
 	
 	@RequestMapping("/")
-	public String irPaginaListadoJugadores(Map<String, Object> model) {
+	public String irPaginaListadoEntrenadores(Map<String, Object> model) {
 		model.put("listaEntrenadores", pService.listar());
 		return "listCoach"; 
 	}
@@ -95,4 +96,34 @@ public class CoachController {
 		return "listCoach";
 	}
 	
+	@RequestMapping("/listarId")
+	public String listarId(Map<String, Object> model, @ModelAttribute Coach coach ) 
+	throws ParseException
+	{
+		pService.listarId(coach.getIdCoach());
+		return "listCoach";
+	}
+	
+	@RequestMapping("/irBuscar")
+	public String irBuscar(Model model) 
+	{
+		model.addAttribute("coach", new Coach());
+		return "buscarCoach";
+	}
+	
+	@RequestMapping("/buscar")
+	public String buscar(Map<String, Object> model, @ModelAttribute Coach coach ) 
+	throws ParseException
+	{
+		List<Coach> listaEntrenadores;
+		coach.setNameCoach(coach.getNameCoach());
+		listaEntrenadores=pService.buscarNombre(coach.getNameCoach());
+		
+		if(listaEntrenadores.isEmpty())
+		{
+			model.put("mensaje", "no existen coincidencias");
+		}
+		model.put("listaEntrenadores", listaEntrenadores);
+		return "buscarCoach";
+	}
 }

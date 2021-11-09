@@ -4,7 +4,7 @@
 	<head>
 		
 		<meta charset="UTF-8"></meta>
-		<title>Axele</title>
+		<title>Market</title>
 		
 		<script type="text/javascript"
 				src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
@@ -29,21 +29,25 @@
     	<div class="container">
     		<form id="myform">
     			<div class="row clearfix">
-    				<div class="col-md-12 column" align="center">
-    					<img th:src="@{/imagenes/axele.png}" width="850" height="400" alt="" align="middle">
+    				<div class="col-md-12 column" align="left">
+    					<img th:src="@{/imagenes/compra.png}" width="200" height="200" alt="logo" align="left">
     					</img>
     				</div>
+    				<a 	style="border-bottom-color: green" th:href="@{/tournament/irRegistrar}"
+    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
+    						<span class="glyphicon glyphicon-briefcase"></span> Comprar
+    				</a>
+    				<div class="col-md-12 column" align="left">
+    					<img th:src="@{/imagenes/venta.png}" width="200" height="200" alt="logo" align="right">
+    					</img>
+    				</div>
+    				<a 	style="border-bottom-color: green" th:href="@{/tournament/irRegistrar}"
+    						id="add-row" type="button" class="btn btn-primary btn-md right-block">
+    						<span class="glyphicon glyphicon-usd"></span> Vender
+    				</a>
     			</div>
-    			
-    			<div class="container titulo text-center" style="max-width: 600px">
-    			<h1 class"h3">Quienes somos?</h1>
-    			<p class="text-center" style="max-width: 600px">Axele es una empresa cuyo objetivo es crear soluciones que faciliten, optimicen y agilicen los videojuegos para mejorar la experiencia del usuario.</p>
-    			</div> 
-    			
-    			
     		</form>
     	</div>
-    	
     	<div th:replace="fragments/footer :: footer"></div>
 	</body>
 	

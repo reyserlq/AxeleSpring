@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	
+		<meta charset="ISO-8859-1"></meta>
+		<title>Equipo</title>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		
+		<link 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+				rel="stylesheet" id="bootstrap-css">
+		</link>
+
+		<script
+			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
+		</script>
+		
+		<script type="text/javascript" th:src="@{/js/race.js}"></script>
+				
+	</head>
+
+	<body>
+    	<div th:replace="fragments/header :: header"></div>
+    	<div class="container">
+    		<form th:action="@{/team/registrar}" method="post" th:object="${team}">
+    			
+    			<div class="container">
+    				<div class="row">
+    					<img th:src="@{/imagenes/campo.png}" width="380" height="500" align="middle"></img>
+    				</div>
+    			</div>
+    			
+    			<div class="form-group col-md-3">
+    				<label for="nombre">Delanteros (Rojo):</label>
+    				
+    				<select class="form-control">
+    					<option>Elija Delantero por la izquierda</option>
+    				</select>
+    				
+    				<select class="form-control">
+    					<option>Elija Delantero Centro</option>
+    				</select>
+    			
+    				<select class="form-control">
+    					<option>Elija Delantero por la derecha</option>
+    				</select>
+    			</div>
+    			
+    			
+    			<div class="form-group col-md-3">
+    			<label for="nombre">Volantes (Amarillo):</label>
+    			<select class="form-control">
+    				<option>Elija Volante Izquierdo</option>
+    			</select>
+    			
+    			<select class="form-control">
+    				<option>Elija Volante Central</option>
+    			</select>
+    			
+    			<select class="form-control">
+    				<option>Elija Volante Derecho</option>
+    			</select>
+    			</div>
+    			
+    			<div class="form-group col-md-3">
+    			<label for="nombre">Defensa (Azules):</label>
+    			<select class="form-control">
+    				<option>Elija Lateral izquierdo</option>
+    			</select>
+    			
+    			<select class="form-control">
+    				<option>Elija Defensa Central Izquierdo</option>
+    			</select>
+    			
+    			<select class="form-control">
+    				<option>Elija Defensa Central Derecho</option>
+    			</select>
+    			
+    			<select class="form-control">
+    				<option>Elija Lateral Derecho</option>
+    			</select>
+    			</div>
+    			
+    			<div class="form-group col-md-3">
+    			<label for="nombre">Arquero (Plomo)</label>
+    			<select class="form-control">
+    				<option>Elija Arquero</option>
+    			</select>
+    			</div>
+    			
+    			<div class="text-right">
+    			<button type="submit" class="btn btn-primary">Aceptar</button>
+    			<a href="/team/listar" class="btn btn-danger">Cancelar</a>
+    			</div>
+    		</form>
+    	</div>
+    	<div th:replace="fragments/footer :: footer"></div>
+	</body>
+
+</html>
