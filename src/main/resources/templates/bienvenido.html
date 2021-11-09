@@ -13,7 +13,6 @@
 		<link
 			href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 			rel="stylesheet" id="bootstrap-css">
-		</link>
 		
 		<script
 			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
@@ -30,13 +29,23 @@
     		<form id="myform">
     			<div class="row clearfix">
     				<div class="col-md-12 column" align="center">
-    					<img th:src="@{/imagenes/axele.png}" width="1100" height="500" alt="logo" align="middle">
-    					</img>
+    					<img th:src="@{/imagenes/axele.png}" width="850" height="400" alt="" align="middle">
     				</div>
     			</div>
+    			
+    			<div class="container titulo text-center" style="max-width: 600px">
+    			<h1 class "h3">Quienes somos?</h1>
+    			<p class="text-center" style="max-width: 600px">Axele es una empresa cuyo objetivo es crear soluciones que faciliten, optimicen y agilicen los videojuegos para mejorar la experiencia del usuario.</p>
+    			</div> 
+    			
+    			
     		</form>
     	</div>
+    	
     	<div th:replace="fragments/footer :: footer"></div>
 	</body>
 	
 </html>
+
+
+

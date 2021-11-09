@@ -30,15 +30,35 @@
     			<div class="row clearfix">
     				<div class="col-md-12 column">
     					
+    					<div class="container">
+    						<div class="row">
+    						<img th:src="@{/imagenes/copa.jpg}"  width="200" height="200" align="left"></img>
+    						</div>
+    					</div>
+    		
+    					<div class="container">
+    						<div class="row">
+    						<img th:src="@{/imagenes/buscar_torneo.jpg}"  width="200" height="200" align="right"></img>
+    						</div>
+    					</div>
+    					
+    				<div class="panel-footer row">
+    					<div class="col-xs-6 text-left">
     					<a 	style="border-bottom-color: green" th:href="@{/tournament/irRegistrar}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-plus"></span> Torneo
+    						
+    						<span class="glyphicon glyphicon-globe"></span> Crear torneo
     					</a>
+    					</div>
     					
+    					<div class="col-xs-6 text-right"> 
 						<a 	style="border-bottom-color: green" th:href="@{/tournament/irBuscar}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-search"></span> Buscar
+    						<span class="glyphicon glyphicon-search"></span> Buscar Torneo
     					</a>
+    					</div>
+    					
+    				</div>
     					
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
     						<thead>
