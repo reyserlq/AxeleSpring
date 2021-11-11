@@ -134,8 +134,10 @@ public class SellController {
 	throws ParseException
 	{
 		List<Sell> listaVentas;
+		
 		sell.setStateSell(sell.getStateSell());
-		listaVentas=pService.buscarEstado(sell.getStateSell());
+		
+		listaVentas=pService.buscarJugador(sell.getStateSell());
 		
 		if(listaVentas.isEmpty())
 		{

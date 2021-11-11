@@ -10,5 +10,5 @@ public interface ISellService {
 	public void eliminar(int idSell);
 	public Optional<Sell> listarId(int idSell);
 	public List<Sell> listar();
-	public List<Sell> buscarEstado(String stateSell);	
+	public List<Sell> buscarJugador(String namePlayer);	
 }

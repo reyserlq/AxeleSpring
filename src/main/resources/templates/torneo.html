@@ -2,9 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-	
 		<meta charset="UTF-8"></meta>
-		<title>Market</title>
+		<title>Torneos</title>
 		
 		<script type="text/javascript"
 				src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js">
@@ -29,35 +28,33 @@
     	<div th:replace="fragments/header :: header"></div>
     	<div class="container">
     			<div class="row clearfix">
-    				
     				<div>
     					<div>									
-    						<figure6>
+    						<figure4>
     							<div>
-    								<img th:src="@{/imagenes/venta.png}" width="450" height="350" ></img>
+    								<img th:src="@{/imagenes/copa.jpg}" width="450" height="350" ></img>
     							</div>
-    						</figure6>
+    						</figure4>
     						
-    						<figure7>
+    						<figure5>
     							<div>
-    								<img th:src="@{/imagenes/compra.png}" width="450" height="350"></img>
+    								<img th:src="@{/imagenes/buscar_torneo.jpg}" width="450" height="350"></img>
     							</div>
-    						</figure7>
+    						</figure5>
     							
     					</div>
     							
-    					<div class="containerm">
-    						<button class="btn-1-m"><a th:href="@{/sell/listar}" id="btn-left">Historial de Venta</button>
-    						<button class="btn-2-m"><a th:href="@{/sell/irBuscar}" id="btn-right">Comprar Jugador</button>
+    					<div class="containert">
+    						<button class="btn-1-t"><a th:href="@{/tournament/listar}" id="btn-left">Mis Torneos</button>
+    						<button class="btn-2-t"><a th:href="@{/tournament/irBuscar}" id="btn-right">Buscar Torneos</button>
     					</div>
     				</div>
-    							
+    					
     				</div>
     			</div>
     			<div th:if="${mensaje}" class="alert alert-danger">
     				<p th:text="${mensaje}"></p>
     			</div>
-    	</div>
     	<div th:replace="fragments/footer :: footer"></div>
 	</body>
 

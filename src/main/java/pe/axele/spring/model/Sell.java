@@ -26,7 +26,7 @@ public class Sell implements Serializable {
 	
 	@Column(name="estadoVenta", length=60, nullable=false)	
 	private String stateSell;
-
+	
 	@ManyToOne
 	@JoinColumn (name="idPlayer", nullable =false)
 	private Player player;

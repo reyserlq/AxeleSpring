@@ -36,6 +36,11 @@ public class TeamController {
 		return "bienvenido";
 	}
 	
+	@RequestMapping("/nuevo")
+	public String irPaginaTeam21() {
+		return "nuevo";
+	}
+	
 	@RequestMapping("/")
 	public String irPaginaListadoEquipos(Map<String, Object> model) {
 		model.put("listaEquipos", pService.listar());

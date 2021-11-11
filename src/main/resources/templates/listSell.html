@@ -31,25 +31,19 @@
     			<div class="row clearfix">
     				
     				<div>
-    					<div>									
-    						<figure6>
-    							<div>
-    								<img th:src="@{/imagenes/venta.png}" width="450" height="350" ></img>
-    							</div>
-    						</figure6>
-    						
-    						<figure7>
-    							<div>
-    								<img th:src="@{/imagenes/compra.png}" width="450" height="350"></img>
-    							</div>
-    						</figure7>
-    							
+    					<div class="text-center">
+    					<a 	style="border-bottom-color: green" th:href="@{/sell/irRegistrar}"
+    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
+    						<span class="glyphicon glyphicon-flash"></span> Vender Jugador
+    					</a>
+    					
+						<a 	style="border-bottom-color: green" th:href="@{/sell/irBuscar}"
+    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
+    						<span class="glyphicon glyphicon-search"></span> Buscar Venta
+    					</a>
     					</div>
     							
-    					<div class="containerm">
-    						<button class="btn-1-m"><a th:href="@{/sell/irRegistrar}" id="btn-left">Vender Jugador</button>
-    						<button class="btn-2-m"><a th:href="@{/sell/irBuscar}" id="btn-right">Comprar Jugador</button>
-    					</div>
+    					
     				</div>
     					
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">

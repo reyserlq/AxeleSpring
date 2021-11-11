@@ -36,6 +36,11 @@ public class TournamentController {
 		return "bienvenido";
 	}
 	
+	@RequestMapping("/torneo")
+	public String irPaginaTorneo() {
+		return "torneo";
+	}
+	
 	@RequestMapping("/")
 	public String irPaginaListadoTorneos(Map<String, Object> model) {
 		model.put("listaTorneos", pService.listar());

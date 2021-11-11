@@ -47,8 +47,8 @@ public class SellServiceImpl implements ISellService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Sell> buscarEstado(String stateSell) {
-		return dSell.buscarNombre(stateSell);
+	public List<Sell> buscarJugador(String namePlayer) {
+		return dSell.buscarJugador(namePlayer);
 	}
 
 }
