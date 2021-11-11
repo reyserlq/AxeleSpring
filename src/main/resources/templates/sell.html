@@ -26,12 +26,12 @@
     		<form th:action="@{/sell/registrar}" method="post" th:object="${sell}">
     			<div class="form-group">
     			
-    				<div class="form-group col-md-4">
+    				<div class="form-group col-md-6">
     				<label for="idSell">ID:</label>
     				<input type="text" class="form-control" th:field="*{idSell}"></input>
     				</div>
     				
-    				<div class="form-group col-md-4">
+    				<div class="form-group col-md-6">
     					<label for="precio">PRECIO:</label>
     					<input type="text" class="form-control" th:field="*{priceSell}" id="precio" placeholder="Ingrese el precio del jugador"></input>
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('priceSell')}" 
@@ -39,7 +39,7 @@
 						</div>
     				</div>
     				
-    				<div class="form-group col-md-5">
+    				<div class="form-group">
     					<label for="estado">ESTADO:</label>
     					<input type="text" class="form-control" th:field="*{stateSell}" id="estado" placeholder="Ingrese el estado en que se encuentra el jugador"></input>
 
