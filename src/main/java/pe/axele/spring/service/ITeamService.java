@@ -10,5 +10,5 @@ public interface ITeamService {
 	public void eliminar(int idTeam);
 	public Optional<Team> listarId(int idTeam);
 	public List<Team> listar();
-	public List<Team> buscarNombre(String nameTeam);	
+	public List<Team> buscarNombre(String nameTeam);
 }

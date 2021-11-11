@@ -1,6 +1,7 @@
 package pe.axele.spring.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,7 +37,7 @@ public class Team implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Team(int idTeam, String nameTeam, String alignmentTeam, Coach coach) {
+	public Team(int idTeam, String nameTeam, String alignmentTeam, Coach coach, List<Player> players) {
 		super();
 		this.idTeam = idTeam;
 		this.nameTeam = nameTeam;
@@ -75,4 +76,5 @@ public class Team implements Serializable {
 	public void setCoach(Coach coach) {
 		this.coach = coach;
 	}
+
 }
