@@ -15,6 +15,8 @@
 			rel="stylesheet" id="bootstrap-css">
 		</link>
 		
+		<link href="../../../estilos.css" rel="stylesheet">
+		
 		<script
 			src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js">
 		</script>
@@ -26,21 +28,29 @@
 	<body>
     	<div th:replace="fragments/header :: header"></div>
     	<div class="container">
-    		<form id="myform">
     			<div class="row clearfix">
-    				<div class="col-md-12 column">
-    					
-    					<div class="text-center">
-    					<a 	style="border-bottom-color: green" th:href="@{/sell/irRegistrar}"
-    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-eur"></span> Vender Jugador
-    					</a>
-    					
-						<a 	style="border-bottom-color: green" th:href="@{/sell/irBuscar}"
-    						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-search"></span> Buscar Jugador
-    					</a>
+    				
+    				<div>
+    					<div>									
+    						<figure6>
+    							<div>
+    								<img th:src="@{/imagenes/venta.png}" width="450" height="350" ></img>
+    							</div>
+    						</figure6>
+    						
+    						<figure7>
+    							<div>
+    								<img th:src="@{/imagenes/compra.png}" width="450" height="350"></img>
+    							</div>
+    						</figure7>
+    							
     					</div>
+    							
+    					<div class="containerm">
+    						<button class="btn-1-m"><a th:href="@{/sell/irRegistrar}" id="btn-left">Vender Jugador</button>
+    						<button class="btn-2-m"><a th:href="@{/sell/irBuscar}" id="btn-right">Comprar Jugador</button>
+    					</div>
+    				</div>
     					
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
     						<thead>
@@ -70,7 +80,6 @@
     			<div th:if="${mensaje}" class="alert alert-danger">
     				<p th:text="${mensaje}"></p>
     			</div>
-    		</form>
     	</div>
     	<div th:replace="fragments/footer :: footer"></div>
 	</body>
