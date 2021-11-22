@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 import pe.axele.spring.model.Team;
 @Repository
 public interface ITeamRepository extends JpaRepository<Team, Integer>{
+	@Query("select count(t.nameTeam) from Team t where t.nameTeam =:nameTeam")
+	public int buscarNombreTeam(@Param("nameTeam") String nameTeam);
+	
 	@Query("from Team t where t.nameTeam like %:nameTeam%")
 	List<Team> buscarNombre(@Param("nameTeam") String nameTeam);
 }

@@ -49,7 +49,7 @@
     							<tr>
     								<th class="text-center">CODIGO</th>
     								<th class="text-center">JUGADOR</th>
-    								<th class="text-center">EDAD</th>
+    								<th class="text-center">FECHA NACIMIENTO</th>
     								<th class="text-center">VALORACION</th>
     								<th class="text-center">PAIS</th>
     								<th class="text-center">HABILIDAD</th>
@@ -61,7 +61,7 @@
     							<tr th:each="pla: ${listaJugadores}">
     								<td th:text="${pla.idPlayer}"></td>
     								<td th:text="${pla.namePlayer}"></td>
-    								<td th:text="${pla.agePlayer}"></td>
+    								<td th:text="${pla.birthPlayer}"></td>
     								<td th:text="${pla.assessmentPlayer}"></td>
     								<td th:text="${pla.countryPlayer}"></td>
     								<td th:text="${pla.abilityPlayer}"></td>

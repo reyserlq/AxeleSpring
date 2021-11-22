@@ -11,6 +11,10 @@ import pe.axele.spring.model.Player;
 
 @Repository
 public interface IPlayerRepository extends JpaRepository<Player, Integer>{
+	@Query("select count(p.namePlayer) from Player p where p.namePlayer =:namePlayer")
+	public int buscarNombrePlayer(@Param("namePlayer") String namePlayer);
+	
+	
 	@Query("from Player p where p.namePlayer like %:namePlayer%")
 	List<Player> buscarNombre(@Param("namePlayer") String namePlayer);
 }
