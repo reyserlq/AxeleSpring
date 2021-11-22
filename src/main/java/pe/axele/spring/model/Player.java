@@ -31,7 +31,7 @@ public class Player implements Serializable {
 	@Column(name="valoracionJugador", nullable=false)	
 	private Integer assessmentPlayer;
 	
-	@Column(name="paisJugador", length=60, nullable=false)	
+	@Column(name="paisJugador", length=60,nullable=false)	
 	private String countryPlayer;
 	
 	@Column(name="habilidadJugador", nullable=false)	
