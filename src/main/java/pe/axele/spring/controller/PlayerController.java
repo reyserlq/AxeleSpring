@@ -56,7 +56,7 @@ public class PlayerController {
 	}
 	
 	@PostMapping("/registrar")
-	public String saveCategory(@Valid Player player, BindingResult result, Model model, SessionStatus status)
+	public String savePlayer(@Valid Player player, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
 			return "player";

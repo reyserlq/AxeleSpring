@@ -47,7 +47,7 @@ public class CoachController {
 	}
 	
 	@PostMapping("/registrar")
-	public String saveCategory(@Valid Coach coach, BindingResult result, Model model, SessionStatus status)
+	public String saveCoach(@Valid Coach coach, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
 			return "coach";

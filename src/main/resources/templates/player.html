@@ -42,7 +42,7 @@
     				
     				<div class="form-group">
     					<label for="habilidad">HABILIDAD :</label>
-    					<input type="text" class="form-control" th:field="*{abilityPlayer}" id="habilidad" placeholder="Ingrese el tipo de habilidad del jugador"></input>
+    					<input type="text" class="form-control" th:field="*{abilityPlayer}" id="habilidad" placeholder="Ingrese la habilidad del jugador"></input>
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('abilityPlayer')}" 
 								th:errors="*{abilityPlayer}">
@@ -94,6 +94,9 @@
     			<button type="submit" class="btn btn-primary">Aceptar</button>
     			<a href="/player/listar" class="btn btn-danger">Cancelar</a>
     			</div>
+    			
+    			<p th:text="${mensaje}" class="form-text text-danger"></p>
+    			
     		</form>
     	</div>
     	<div th:replace="fragments/footer :: footer"></div>
