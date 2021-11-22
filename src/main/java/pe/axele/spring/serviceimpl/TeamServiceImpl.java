@@ -21,12 +21,12 @@ public class TeamServiceImpl implements ITeamService {
 	
 	@Override
 	@Transactional
-	public Integer grabar(Team team) {
-		int rpta = dTeam.buscarNombreTeam(team.getNameTeam());
-		if (rpta == 0) {
-			dTeam.save(team);
-		}
-		return rpta;
+	public boolean grabar(Team team) {
+		Team objTeam = dTeam.save(team);
+		if (objTeam == null)
+			return false;
+		else
+			return true;
 	}
 	
 	@Override

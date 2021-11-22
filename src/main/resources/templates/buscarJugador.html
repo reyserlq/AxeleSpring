@@ -53,6 +53,7 @@
     								<th class="text-center">VALORACION</th>
     								<th class="text-center">PAIS</th>
     								<th class="text-center">HABILIDAD</th>
+    								<th class="text-center">POSICION</th>
     								<th class="text-center">OPERACION</th>
     								<th class="text-center">OPERACION</th>
     							</tr>
@@ -65,6 +66,7 @@
     								<td th:text="${pla.assessmentPlayer}"></td>
     								<td th:text="${pla.countryPlayer}"></td>
     								<td th:text="${pla.abilityPlayer}"></td>
+    								<td th:text="${pla.position.namePosition}"></td>
     								<td><a th:href="@{/player/eliminar?id=}+${pla.idPlayer}">Eliminar</a></td>    								
     								<td><a th:href="@{'/player/modificar/'}+${pla.idPlayer}">Modificar</a></td>
     							</tr>

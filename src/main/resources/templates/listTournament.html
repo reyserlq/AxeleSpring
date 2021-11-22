@@ -57,7 +57,7 @@
     							<tr th:each="tor: ${listaTorneos}">
     								<td th:text="${tor.idTournament}"></td>
     								<td th:text="${tor.nameTournament}"></td>
-    								<td th:text="${tor.playersTournament}"></td>
+    								<td th:text="${tor.participantsTournament}"></td>
     								<td th:text="${tor.assessmentTournament}"></td>
     								<td th:text="${#dates.format(tor.startDateTournament,'dd/MM/yyyy')}"></td>
     								<td th:text="${tor.descriptionTournament}"></td>

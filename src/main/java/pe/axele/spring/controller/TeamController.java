@@ -63,25 +63,26 @@ public class TeamController {
 	}
 	
 	
-	@PostMapping("/registrar")
-	public String saveCategory(@Valid Team objTeam, BindingResult result, Model model, SessionStatus status)
-			throws Exception {
-		if (result.hasErrors()) {
+	@RequestMapping("/registrar")
+	public String registrar(@ModelAttribute Team objTeam, BindingResult binRes, Model model) 
+		throws ParseException
+	{
+		if (binRes.hasErrors())
+		{
+			model.addAttribute("listaEntrenadores", cService.listar());
 			return "team";
-		} else {
-			int rpta = pService.grabar(objTeam);
-			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe equipo");
-				return "team";
-			} else { 
-				model.addAttribute("mensaje", "Se guardó correctamente");
-				status.setComplete();
+		}
+		else {
+			boolean flag = pService.grabar(objTeam);
+			if (flag)
+				return "redirect:/team/listar";
+			else {
+				model.addAttribute("mensaje", "Ocurrio un rochezaso, LUZ ROJA");
+				return "redirect:/team/irRegistrar";
 			}
 		}
-		model.addAttribute("listEquipos", pService.listar());
-
-		return "team";
 	}
+	
 	
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 

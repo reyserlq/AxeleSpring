@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +26,7 @@ public class Sell implements Serializable {
 	private int idSell;
 	
 	@Min(value=1, message="el precio debe ser mayor de cero")  
-	@NotEmpty(message = "Debe ingresar un precio de venta*")
+	@NotNull(message = "Debe ingresar un precio")
 	@Column(name="precioVenta", nullable=false)	
 	private Integer priceSell;
 	
@@ -44,7 +45,7 @@ public class Sell implements Serializable {
 	}
 
 	public Sell(int idSell,
-			@Min(value = 1, message = "el precio debe ser mayor de cero") @NotEmpty(message = "Debe ingresar un precio de venta*") Integer priceSell,
+			@Min(value = 1, message = "el precio debe ser mayor de cero") @NotNull(message = "Debe ingresar un precio") Integer priceSell,
 			@Size(min = 1, max = 30) @NotEmpty(message = "Debe ingresar un estado de venta*") String stateSell,
 			Player player) {
 		super();

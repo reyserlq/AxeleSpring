@@ -39,13 +39,13 @@ public class Tournament implements Serializable {
 	
 	@Min(value=5, message="el valor minimo de participantes es 5")  
     @Max(value=30, message="el valor maximo de participantes es 30")  
-	@NotEmpty(message = "Debe ingresar la cantidad de participantes*")
+	@NotNull(message = "Debe ingresar la cantidad de participantes*")
 	@Column(name="participantesTorneo", nullable=false)	
 	private Integer participantsTournament;
 	
 	@Min(value=20, message="el valor minimo de la valoracion es 40")  
     @Max(value=100, message="el valor maximo de la valoracion es 100")  
-	@NotEmpty(message = "Debe ingresar la valoracion*")
+	@NotNull(message = "Debe ingresar la valoracion*")
 	@Column(name="valoracionTorneo", nullable=false)	
 	private Integer assessmentTournament;
 	
@@ -72,8 +72,8 @@ public class Tournament implements Serializable {
 
 	public Tournament(int idTournament,
 			@Size(min = 1, max = 30) @NotEmpty(message = "Debe ingresar un nombre*") String nameTournament,
-			@Min(value = 5, message = "el valor minimo de participantes es 5") @Max(value = 30, message = "el valor maximo de participantes es 30") @NotEmpty(message = "Debe ingresar la cantidad de participantes*") Integer participantsTournament,
-			@Min(value = 20, message = "el valor minimo de la valoracion es 40") @Max(value = 100, message = "el valor maximo de la valoracion es 100") @NotEmpty(message = "Debe ingresar la valoracion*") Integer assessmentTournament,
+			@Min(value = 5, message = "el valor minimo de participantes es 5") @Max(value = 30, message = "el valor maximo de participantes es 30") @NotNull(message = "Debe ingresar la cantidad de participantes*") Integer participantsTournament,
+			@Min(value = 20, message = "el valor minimo de la valoracion es 40") @Max(value = 100, message = "el valor maximo de la valoracion es 100") @NotNull(message = "Debe ingresar la valoracion*") Integer assessmentTournament,
 			@NotNull(message = "Debe ingresar una fecha") @Future(message = "La fecha debe estar en el futuro") Date startDateTournament,
 			@Size(min = 1, max = 60) @NotEmpty(message = "Debe ingresar una descripcion*") String descriptionTournament,
 			Team team) {

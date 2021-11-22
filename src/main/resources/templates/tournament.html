@@ -45,10 +45,10 @@
     				
     				<div class="form-group col-md-4">
     					<label for="cantidad_jugadores">CANT JUGADORES :</label>
-    					<input type="text" class="form-control" th:field="*{playersTournament}" id="cantidad_jugadores" placeholder="Ingrese la cantidad de jugadores que va a admitir el torneo"></input>
+    					<input type="text" class="form-control" th:field="*{participantsTournament}" id="cantidad_jugadores" placeholder="Ingrese la cantidad de jugadores que va a admitir el torneo"></input>
 
-						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('playersTournament')}" 
-								th:errors="*{playersTournament}">
+						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('participantsTournament')}" 
+								th:errors="*{participantsTournament}">
 						</div>
     				</div>
     				
@@ -99,6 +99,8 @@
     			<button type="submit" class="btn btn-primary">Aceptar</button>
     			<a href="/tournament/listar" class="btn btn-danger">Cancelar</a>
     			</div>
+    			
+    			<p th:text="${mensaje}" class="form-text text-danger"></p>
     		</form>
     	</div>
     	<div th:replace="fragments/footer :: footer"></div>

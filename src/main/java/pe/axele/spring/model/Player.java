@@ -47,7 +47,7 @@ public class Player implements Serializable {
 	
 	@Min(value=20, message="el valor minimo de la valoracion es 20")  
     @Max(value=100, message="el valor maximo de la valoracion es 100")  
-	@NotEmpty(message = "Debe ingresar la valoracion*")
+	@NotNull(message = "Debe ingresar la valoracion")
 	@Column(name="valoracionJugador", nullable=false)	
 	private Integer assessmentPlayer;
 	
@@ -58,7 +58,7 @@ public class Player implements Serializable {
 	
 	@Min(value=20, message="el valor minimo de la habilidad es 20")  
     @Max(value=100, message="el valor maximo de la habilidad es 100")  
-	@NotEmpty(message = "Debe ingresar la habilidad*")
+	@NotNull(message = "Debe ingresar la habilidad")
 	@Column(name="habilidadJugador", nullable=false)	
 	private Integer abilityPlayer;
 	
@@ -74,9 +74,9 @@ public class Player implements Serializable {
 	public Player(int idPlayer,
 			@Size(min = 1, max = 60) @NotEmpty(message = "Debe ingresar el nombre*") String namePlayer,
 			@NotNull(message = "Debe ingresar una fecha") @Past(message = "La fecha debe estar en el pasado") Date birthPlayer,
-			@Min(value = 20, message = "el valor minimo de la valoracion es 20") @Max(value = 100, message = "el valor maximo de la valoracion es 100") @NotEmpty(message = "Debe ingresar la valoracion*") Integer assessmentPlayer,
+			@Min(value = 20, message = "el valor minimo de la valoracion es 20") @Max(value = 100, message = "el valor maximo de la valoracion es 100") @NotNull(message = "Debe ingresar la valoracion") Integer assessmentPlayer,
 			@Size(min = 1, max = 30) @NotEmpty(message = "Debe ingresar el pais de origen*") String countryPlayer,
-			@Min(value = 20, message = "el valor minimo de la habilidad es 20") @Max(value = 100, message = "el valor maximo de la habilidad es 100") @NotEmpty(message = "Debe ingresar la habilidad*") Integer abilityPlayer,
+			@Min(value = 20, message = "el valor minimo de la habilidad es 20") @Max(value = 100, message = "el valor maximo de la habilidad es 100") @NotNull(message = "Debe ingresar la habilidad") Integer abilityPlayer,
 			Position position) {
 		super();
 		this.idPlayer = idPlayer;
