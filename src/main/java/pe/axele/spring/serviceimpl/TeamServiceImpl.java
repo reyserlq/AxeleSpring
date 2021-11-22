@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import pe.axele.spring.model.Team;
 import pe.axele.spring.repository.ITeamRepository;
 import pe.axele.spring.service.ITeamService;
@@ -20,12 +21,12 @@ public class TeamServiceImpl implements ITeamService {
 	
 	@Override
 	@Transactional
-	public boolean grabar(Team team) {
-		Team objTeam = dTeam.save(team);
-		if (objTeam == null)
-			return false;
-		else
-			return true;
+	public Integer grabar(Team team) {
+		int rpta = dTeam.buscarNombreTeam(team.getNameTeam());
+		if (rpta == 0) {
+			dTeam.save(team);
+		}
+		return rpta;
 	}
 	
 	@Override

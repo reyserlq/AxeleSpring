@@ -6,7 +6,7 @@ import java.util.Optional;
 import pe.axele.spring.model.Team;
 
 public interface ITeamService {
-	public boolean grabar(Team team);
+	public Integer grabar(Team team);
 	public void eliminar(int idTeam);
 	public Optional<Team> listarId(int idTeam);
 	public List<Team> listar();

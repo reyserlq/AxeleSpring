@@ -19,12 +19,12 @@ public class PlayerServiceImpl implements IPlayerService {
 	
 	@Override
 	@Transactional
-	public boolean grabar(Player player) {
-		Player objPlayer = dPlayer.save(player);
-		if (objPlayer == null)
-			return false;
-		else
-			return true;
+	public Integer grabar(Player player) {
+		int rpta = dPlayer.buscarNombrePlayer(player.getNamePlayer());
+		if (rpta == 0) {
+			dPlayer.save(player);
+		}
+		return rpta;
 	}
 	
 	@Override
