@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -20,11 +23,15 @@ public class Sell implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSell;
-		
+	
+	@Min(value=1, message="el precio debe ser mayor de cero")  
+	@NotEmpty(message = "Debe ingresar un precio de venta*")
 	@Column(name="precioVenta", nullable=false)	
 	private Integer priceSell;
 	
-	@Column(name="estadoVenta", length=60, nullable=false)	
+	@Size(min=1, max = 30)
+	@NotEmpty(message = "Debe ingresar un estado de venta*")
+	@Column(name="estadoVenta", length=30, nullable=false)	
 	private String stateSell;
 	
 	@ManyToOne
@@ -36,7 +43,10 @@ public class Sell implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Sell(int idSell, Integer priceSell, String stateSell, Player player) {
+	public Sell(int idSell,
+			@Min(value = 1, message = "el precio debe ser mayor de cero") @NotEmpty(message = "Debe ingresar un precio de venta*") Integer priceSell,
+			@Size(min = 1, max = 30) @NotEmpty(message = "Debe ingresar un estado de venta*") String stateSell,
+			Player player) {
 		super();
 		this.idSell = idSell;
 		this.priceSell = priceSell;

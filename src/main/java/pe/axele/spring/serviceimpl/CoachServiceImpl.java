@@ -19,12 +19,12 @@ public class CoachServiceImpl implements ICoachService {
 	
 	@Override
 	@Transactional
-	public boolean grabar(Coach coach) {
-		Coach objCoach = dCoach.save(coach);
-		if (objCoach == null)
-			return false;
-		else
-			return true;
+	public Integer grabar(Coach coach) {
+		int rpta = dCoach.buscarNombreCoach(coach.getNameCoach());
+		if (rpta == 0) {
+			dCoach.save(coach);
+		}
+		return rpta;
 	}
 	
 	@Override

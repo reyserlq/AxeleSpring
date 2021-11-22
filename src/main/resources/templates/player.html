@@ -52,7 +52,7 @@
     				
     				<div class="form-group col-md-4">
     					<label for="edad">EDAD:</label>
-    					<input type="text" class="form-control" th:field="*{agePlayer}" id="edad" placeholder="Ingrese la edad del jugador"></input>
+    					<input type="text" class="form-control" th:field="*{birthPlayer}" id="fecha_nacimiento" placeholder="Ingrese la edad del jugador"></input>
 
 						<div 	class="alert alert-danger" th:if="${#fields.hasErrors('agePlayer')}" 
 								th:errors="*{agePlayer}">

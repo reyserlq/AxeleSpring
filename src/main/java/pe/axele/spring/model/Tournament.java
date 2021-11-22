@@ -11,6 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -26,20 +32,32 @@ public class Tournament implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTournament;
 	
-	@Column(name="nombreTorneo", length=60, nullable=false)	
+	@Size(min=1, max = 30)
+	@NotEmpty(message = "Debe ingresar un nombre*")
+	@Column(name="nombreTorneo", length=30, nullable=false)	
 	private String nameTournament;
 	
-	@Column(name="jugadoresTorneo", nullable=false)	
-	private Integer playersTournament;
+	@Min(value=5, message="el valor minimo de participantes es 5")  
+    @Max(value=30, message="el valor maximo de participantes es 30")  
+	@NotEmpty(message = "Debe ingresar la cantidad de participantes*")
+	@Column(name="participantesTorneo", nullable=false)	
+	private Integer participantsTournament;
 	
+	@Min(value=20, message="el valor minimo de la valoracion es 40")  
+    @Max(value=100, message="el valor maximo de la valoracion es 100")  
+	@NotEmpty(message = "Debe ingresar la valoracion*")
 	@Column(name="valoracionTorneo", nullable=false)	
 	private Integer assessmentTournament;
 	
+	@NotNull(message = "Debe ingresar una fecha")
+	@Future(message = "La fecha debe estar en el futuro")
 	@Temporal (TemporalType.DATE)
 	@Column(name="fechaInicioTorneo")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date startDateTournament;
 	
+	@Size(min=1, max = 60)
+	@NotEmpty(message = "Debe ingresar una descripcion*")
 	@Column(name="descripcionTorneo", length=60, nullable=false)	
 	private String descriptionTournament;
 
@@ -52,12 +70,17 @@ public class Tournament implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Tournament(int idTournament, String nameTournament, Integer playersTournament, Integer assessmentTournament,
-			Date startDateTournament, String descriptionTournament, Team team) {
+	public Tournament(int idTournament,
+			@Size(min = 1, max = 30) @NotEmpty(message = "Debe ingresar un nombre*") String nameTournament,
+			@Min(value = 5, message = "el valor minimo de participantes es 5") @Max(value = 30, message = "el valor maximo de participantes es 30") @NotEmpty(message = "Debe ingresar la cantidad de participantes*") Integer participantsTournament,
+			@Min(value = 20, message = "el valor minimo de la valoracion es 40") @Max(value = 100, message = "el valor maximo de la valoracion es 100") @NotEmpty(message = "Debe ingresar la valoracion*") Integer assessmentTournament,
+			@NotNull(message = "Debe ingresar una fecha") @Future(message = "La fecha debe estar en el futuro") Date startDateTournament,
+			@Size(min = 1, max = 60) @NotEmpty(message = "Debe ingresar una descripcion*") String descriptionTournament,
+			Team team) {
 		super();
 		this.idTournament = idTournament;
 		this.nameTournament = nameTournament;
-		this.playersTournament = playersTournament;
+		this.participantsTournament = participantsTournament;
 		this.assessmentTournament = assessmentTournament;
 		this.startDateTournament = startDateTournament;
 		this.descriptionTournament = descriptionTournament;
@@ -80,12 +103,12 @@ public class Tournament implements Serializable {
 		this.nameTournament = nameTournament;
 	}
 
-	public Integer getPlayersTournament() {
-		return playersTournament;
+	public Integer getParticipantsTournament() {
+		return participantsTournament;
 	}
 
-	public void setPlayersTournament(Integer playersTournament) {
-		this.playersTournament = playersTournament;
+	public void setParticipantsTournament(Integer participantsTournament) {
+		this.participantsTournament = participantsTournament;
 	}
 
 	public Integer getAssessmentTournament() {
@@ -119,6 +142,4 @@ public class Tournament implements Serializable {
 	public void setTeam(Team team) {
 		this.team = team;
 	}
-	
-
 }

@@ -1,7 +1,6 @@
 package pe.axele.spring.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -22,10 +23,14 @@ public class Team implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTeam;
 	
-	@Column(name="nombreEquipo", length=60, nullable=false)	
+	@Size(min=1, max = 30)
+	@NotEmpty(message = "Debe ingresar un nombre*")
+	@Column(name="nombreEquipo", length=30, nullable=false)	
 	private String nameTeam;
 	
-	@Column(name="alineacionEquipo", nullable=false)	
+	@Size(min=1, max = 30)
+	@NotEmpty(message = "Debe ingresar una alineacion*")
+	@Column(name="alineacionEquipo",length=30, nullable=false)	
 	private String alignmentTeam;
 
 	@ManyToOne
@@ -37,7 +42,9 @@ public class Team implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Team(int idTeam, String nameTeam, String alignmentTeam, Coach coach, List<Player> players) {
+	public Team(int idTeam, @Size(min = 1, max = 30) @NotEmpty(message = "Debe ingresar un nombre*") String nameTeam,
+			@Size(min = 1, max = 30) @NotEmpty(message = "Debe ingresar una alineacion*") String alignmentTeam,
+			Coach coach) {
 		super();
 		this.idTeam = idTeam;
 		this.nameTeam = nameTeam;
@@ -76,5 +83,4 @@ public class Team implements Serializable {
 	public void setCoach(Coach coach) {
 		this.coach = coach;
 	}
-
 }

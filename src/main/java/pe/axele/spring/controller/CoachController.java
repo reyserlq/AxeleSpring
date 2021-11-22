@@ -4,14 +4,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
@@ -42,21 +46,24 @@ public class CoachController {
 		return "coach"; 
 	}
 	
-	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Coach objCoach, BindingResult binRes, Model model) 
-		throws ParseException
-	{
-		if (binRes.hasErrors())
+	@PostMapping("/registrar")
+	public String saveCategory(@Valid Coach coach, BindingResult result, Model model, SessionStatus status)
+			throws Exception {
+		if (result.hasErrors()) {
 			return "coach";
-		else {
-			boolean flag = pService.grabar(objCoach);
-			if (flag)
-				return "redirect:/coach/listar";
-			else {
-				model.addAttribute("mensaje", "Ocurrio un rochezaso, LUZ ROJA");
-				return "redirect:/coach/irRegistrar";
+		} else {
+			int rpta = pService.grabar(coach);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "Ya existe");
+				return "coach";
+			} else { 
+				model.addAttribute("mensaje", "Se guardó correctamente");
+				status.setComplete();
 			}
 		}
+		model.addAttribute("listEntrenadores", pService.listar());
+
+		return "coach";
 	}
 	
 	@RequestMapping("/modificar/{id}")
@@ -69,7 +76,10 @@ public class CoachController {
 			return "redirect:/coach/listar";
 		}
 		else {
-			model.addAttribute("coach",objCoach);
+			model.addAttribute("listaEntrenadores", pService.listar());
+			
+			if(objCoach.isPresent())
+				objCoach.ifPresent(o ->model.addAttribute("coach", o));
 			return "coach";
 		}
 	}

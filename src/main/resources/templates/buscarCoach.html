@@ -51,7 +51,7 @@
     							<tr>
     								<th class="text-center">CODIGO</th>
     								<th class="text-center">ENTRENADOR</th>
-    								<th class="text-center">EDAD</th>
+    								<th class="text-center">FECHA NACIMIENTO</th>
     								<th class="text-center">PAIS</th>
     								<th class="text-center">OPERACION</th>
     								<th class="text-center">OPERACION</th>
@@ -61,7 +61,7 @@
     							<tr th:each="coa: ${listaEntrenadores}">
     								<td th:text="${coa.idCoach}"></td>
     								<td th:text="${coa.nameCoach}"></td>
-    								<td th:text="${coa.ageCoach}"></td>
+    								<td th:text="${coa.birthCoach}"></td>
     								<td th:text="${coa.countryCoach}"></td>
     								<td><a th:href="@{/coach/eliminar?id=}+${coa.idCoach}">Eliminar</a></td>    								
     								<td><a th:href="@{'/coach/modificar/'}+${coa.idCoach}">Modificar</a></td>

@@ -20,7 +20,7 @@ public class Buy implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idBuy;
-		
+	
 	@Column(name="precioCompra", nullable=false)	
 	private Integer priceBuy;
 
