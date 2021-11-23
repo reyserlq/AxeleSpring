@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @SpringBootApplication
-public class AxeleSpringApplication implements CommandLineRunner {
+public class AxeleSpringApplication  {
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -21,21 +21,6 @@ public class AxeleSpringApplication implements CommandLineRunner {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(AxeleSpringApplication.class, args);
-	}
-	
-	public void run(String... args) throws Exception {
-		String password="reyser";
-		String contra="sebastian";
-		
-		for(int i=0; i<2; i++) {
-			String bcryptPassword = passwordEncoder.encode(password);
-			System.out.println(bcryptPassword);
-		}
-		
-		for(int i=0; i<2; i++) {
-			String bcryptPassword2 = passwordEncoder.encode(contra);
-			System.out.println(bcryptPassword2);
-		}		
 	}
 
 }
