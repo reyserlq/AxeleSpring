@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="Usuario")
@@ -33,7 +35,9 @@ public class Users implements Serializable {
 	@Column(name="correoUsuario",length=30, nullable=false)	
 	private String emailUsers;
 	
-	@Column(name="telefonoUsuario",length=20, nullable=false)	
+	@Size(min = 9, max = 15)
+	@NotEmpty(message = "Debe ingresar el nombre*")
+	@Column(name="telefonoUsuario",length=15, nullable=false)	
 	private String cellphoneUsers;
 	
 	private Boolean enabled;
