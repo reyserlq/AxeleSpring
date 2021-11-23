@@ -29,10 +29,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		try {
 			http.authorizeRequests()
 				.antMatchers("/player/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-				.antMatchers("/coach/**").access("hasRole('ROLE_USER')")
-				.antMatchers("/sell/**").access("hasRole('ROLE_USER')")
+				.antMatchers("/coach/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+				.antMatchers("/sell/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 				.antMatchers("/team/**").access("hasRole('ROLE_USER')")
-				.antMatchers("/tournament/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+				.antMatchers("/tournament/**").access("hasRole('ROLE_USER')")
 				.antMatchers("/welcome/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')").and()
 				.formLogin().successHandler(successHandler).loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/welcome/bienvenido")
 				.permitAll().and().logout().logoutSuccessUrl("/login").permitAll().and().exceptionHandling().accessDeniedPage("/error_403");
